@@ -17,9 +17,17 @@ var handler8081 = function(request, response) {
   response.end("You've hit port 8081 on " + os.hostname() + "\n");
 };
 
+// Handler function for port 8082
+var handler8080 = function(request, response) {
+  console.log("Received request on port 8082 from " + request.connection.remoteAddress);
+  response.writeHead(200);
+  response.end("You've hit  " + os.hostname() + "\n");
+};
+
 // Create HTTP server instances
 var server8080 = http.createServer(handler8080);
 var server8081 = http.createServer(handler8081);
+var server8082 = http.createServer(handler8082);
 
 // Listen on ports 8080 and 8081
 server8080.listen(8080, function() {
@@ -28,4 +36,8 @@ server8080.listen(8080, function() {
 
 server8081.listen(8081, function() {
   console.log("Server listening on port 8081");
+});
+
+server8082.listen(8082, function() {
+  console.log("Server listening on port 8082");
 });
